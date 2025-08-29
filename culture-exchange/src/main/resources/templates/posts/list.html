@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Culture Exchange</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Culture Exchange</a>
+        <div>
+            <a class="btn btn-outline-light" href="/posts/new">New Post</a>
+        </div>
+    </div>
+</nav>
+<main class="container py-4">
+    <h2>Latest posts</h2>
+    <div th:if="${#lists.isEmpty(posts)}" class="text-muted">No posts yet.</div>
+    <div class="list-group" th:each="p : ${posts}">
+        <a class="list-group-item list-group-item-action" th:href="@{'/posts/' + ${p.id}}">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" th:text="${p.title}">Title</h5>
+                <small th:text="${#temporals.format(p.createdAt, 'yyyy-MM-dd HH:mm')}"></small>
+            </div>
+            <p class="mb-1" th:text="${#strings.abbreviate(p.content, 140)}"></p>
+            <small th:text="${p.country}"></small>
+        </a>
+    </div>
+</main>
+</body>
+</html>
+
