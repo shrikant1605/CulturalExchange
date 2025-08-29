@@ -19,7 +19,7 @@ public class Post {
     @Size(min = 3, max = 200)
     private String title;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     @NotBlank
     private String content;
 
