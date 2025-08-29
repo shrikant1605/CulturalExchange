@@ -10,7 +10,7 @@ create table if not exists users (
 create table if not exists posts (
     id bigserial primary key,
     title varchar(200) not null,
-    content text not null,
+    content clob not null,
     country varchar(255),
     author_id bigint not null references users(id) on delete cascade,
     created_at timestamp not null
